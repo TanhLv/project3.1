@@ -19,6 +19,6 @@ namespace TrainOnline.Models
         public int StateId { get; set; }
 
         [ForeignKey("StateId")]
-        public virtual _Status GetStateId { get; set; } = null;
+        public virtual _Status? GetStateId { get; set; } = null;
     }
 }

@@ -18,12 +18,12 @@ namespace TrainOnline.Models
         public int? StatusId { get; set; } = null;
 
         [ForeignKey("TrainCarId")]
-        public virtual TrainCar GetTrainCarId { get; set; } = null;
+        public virtual TrainCar? GetTrainCarId { get; set; } = null;
 
         [ForeignKey("TypeId")]
-        public virtual _Type GetTypeId { get; set; } = null;
+        public virtual _Type? GetTypeId { get; set; } = null;
 
         [ForeignKey("StatusId")]
-        public virtual _Status GetStatusId { get; set; } = null;
+        public virtual _Status? GetStatusId { get; set; } = null;
     }
 }

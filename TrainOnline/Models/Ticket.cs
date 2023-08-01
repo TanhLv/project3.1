@@ -21,18 +21,18 @@ namespace TrainOnline.Models
         public int? ArrivalStation { get; set; } = null;
 
         [ForeignKey("PassengerInformation")]
-        public virtual Passenger GetPassengerInformation { get; set; } = null;
+        public virtual Passenger? GetPassengerInformation { get; set; } = null;
 
-        //[ForeignKey("TrainTripId")]
-        //public virtual TrainTrip GetTrainTripId { get; set; } = null;
+        [ForeignKey("TrainTripId")]
+        public virtual TrainTrip GetTrainTripId { get; set; } = null;
 
         [ForeignKey("SeatId")]
-        public virtual Seat GetSeatId { get; set; } = null;
+        public virtual Seat? GetSeatId { get; set; } = null;
 
         [ForeignKey("DepartureStation")]
-        public virtual Station GetDepartureStation { get; set; } = null;
+        public virtual Station? GetDepartureStation { get; set; } = null;
 
         [ForeignKey("ArrivalStation")]
-        public virtual Station GetArrivalStation { get; set; } = null;
+        public virtual Station? GetArrivalStation { get; set; } = null;
     }
 }

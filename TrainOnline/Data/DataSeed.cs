@@ -263,223 +263,185 @@ namespace TrainOnline.Data
                     StatusId = 6
                 };
 
-                var train6 = new Train()
-                {
-                    TrainNumber = 6,
-                    TypeId = 9,
-                    StatusId = 9
-                };
-
-                var train7 = new Train()
-                {
-                    TrainNumber = 7,
-                    TypeId = 3,
-                    StatusId = 3
-                };
-
-                var train8 = new Train()
-                {
-                    TrainNumber = 8,
-                    TypeId = 6,
-                    StatusId = 6
-                };
-
-                var train9 = new Train()
-                {
-                    TrainNumber = 9,
-                    TypeId = 9,
-                    StatusId = 9
-                };
-
-                var train10 = new Train()
-                {
-                    TrainNumber = 10,
-                    TypeId = 3,
-                    StatusId = 3
-                };
-
-                var train11 = new Train()
-                {
-                    TrainNumber = 11,
-                    TypeId = 6,
-                    StatusId = 6
-                };
-
-                var train12 = new Train()
-                {
-                    TrainNumber = 12,
-                    TypeId = 9,
-                    StatusId = 9
-                };
-
-                var train13 = new Train()
-                {
-                    TrainNumber = 13,
-                    TypeId = 3,
-                    StatusId = 3
-                };
-
-                var train14 = new Train()
-                {
-                    TrainNumber = 14,
-                    TypeId = 6,
-                    StatusId = 6
-                };
-
-                var train15 = new Train()
-                {
-                    TrainNumber = 15,
-                    TypeId = 9,
-                    StatusId = 9
-                };
-
-                var train16 = new Train()
-                {
-                    TrainNumber = 16,
-                    TypeId = 3,
-                    StatusId = 3
-                };
-
-                var train17 = new Train()
-                {
-                    TrainNumber = 17,
-                    TypeId = 6,
-                    StatusId = 6
-                };
-
-                var train18 = new Train()
-                {
-                    TrainNumber = 18,
-                    TypeId = 9,
-                    StatusId = 9
-                };
-
-                var train19 = new Train()
-                {
-                    TrainNumber = 19,
-                    TypeId = 3,
-                    StatusId = 3
-                };
-
-                var train20 = new Train()
-                {
-                    TrainNumber = 20,
-                    TypeId = 6,
-                    StatusId = 6
-                };
-
-                var train21 = new Train()
-                {
-                    TrainNumber = 21,
-                    TypeId = 9,
-                    StatusId = 9
-                };
-
-                var train22 = new Train()
-                {
-                    TrainNumber = 22,
-                    TypeId = 3,
-                    StatusId = 3
-                };
-
-                var train23 = new Train()
-                {
-                    TrainNumber = 23,
-                    TypeId = 6,
-                    StatusId = 6
-                };
-
-                var train24 = new Train()
-                {
-                    TrainNumber = 24,
-                    TypeId = 9,
-                    StatusId = 9
-                };
-
-                var train25 = new Train()
-                {
-                    TrainNumber = 25,
-                    TypeId = 3,
-                    StatusId = 3
-                };
-
-                var train26 = new Train()
-                {
-                    TrainNumber = 26,
-                    TypeId = 6,
-                    StatusId = 6
-                };
-
-                var train27 = new Train()
-                {
-                    TrainNumber = 27,
-                    TypeId = 9,
-                    StatusId = 9
-                };
-
-                var train28 = new Train()
-                {
-                    TrainNumber = 28,
-                    TypeId = 3,
-                    StatusId = 3
-                };
-
-                var train29 = new Train()
-                {
-                    TrainNumber = 29,
-                    TypeId = 6,
-                    StatusId = 6
-                };
-
-                var train30 = new Train()
-                {
-                    TrainNumber = 30,
-                    TypeId = 9,
-                    StatusId = 9
-                };
-
                 context.Trains.Add(train1);
                 context.Trains.Add(train2);
                 context.Trains.Add(train3);
                 context.Trains.Add(train4);
                 context.Trains.Add(train5);
-                context.Trains.Add(train6);
-                context.Trains.Add(train7);
-                context.Trains.Add(train8);
-                context.Trains.Add(train9);
-                context.Trains.Add(train10);
-                context.Trains.Add(train11);
-                context.Trains.Add(train12);
-                context.Trains.Add(train13);
-                context.Trains.Add(train14);
-                context.Trains.Add(train15);
-                context.Trains.Add(train16);
-                context.Trains.Add(train17);
-                context.Trains.Add(train18);
-                context.Trains.Add(train19);
-                context.Trains.Add(train20);
-                context.Trains.Add(train21);
-                context.Trains.Add(train22);
-                context.Trains.Add(train23);
-                context.Trains.Add(train24);
-                context.Trains.Add(train25);
-                context.Trains.Add(train26);
-                context.Trains.Add(train27);
-                context.Trains.Add(train28);
-                context.Trains.Add(train29);
-                context.Trains.Add(train30);
                 context.SaveChanges();
             }
 
-            if (context.TrainCars.Count() <= 0)
+            //if (context.TrainCars.Count() <= 0)
+            //{
+            //    // Các giá trị cho typeId, statusId và trainId
+            //    int[] typeIds = { 3, 6, 9 };
+            //    int[] statusIds = { 3, 6, 9 };
+            //    int[] trainIds = { 1, 2, 3, 4, 5 };
+
+            //    for (int i = 0; i < 25; i++)
+            //    {
+            //        var trainCar = new TrainCar()
+            //        {
+            //            TrainCarNumber = i + 1, // Giá trị TrainCarNumber tăng dần từ 1 đến 25
+            //            TrainId = trainIds[i % trainIds.Length], // Lặp lại các giá trị trainIds
+            //            TypeId = typeIds[i % typeIds.Length], // Lặp lại các giá trị typeIds
+            //            StatusId = statusIds[i % statusIds.Length] // Lặp lại các giá trị statusIds
+            //        };
+
+            //        context.TrainCars.Add(trainCar);
+            //    }
+
+            //    context.SaveChanges();
+            //}
+
+            //if (context.Seats.Count() <= 0)
+            //{
+            //    // Các giá trị cho typeId và statusId
+            //    int[] typeIds = { 3, 6, 9 };
+            //    int[] statusIds = { 3, 6, 9 };
+
+            //    // Số lượng các TrainCarId
+            //    int trainCarIdCount = 25;
+
+            //    // Số lượng dữ liệu cần thêm
+            //    int dataCount = 800;
+
+            //    int dataIndex = 0; // Biến đếm cho dữ liệu
+
+            //    for (int i = 1; i <= trainCarIdCount; i++)
+            //    {
+            //        for (int j = 0; j < dataCount / trainCarIdCount; j++)
+            //        {
+            //            var seat = new Seat()
+            //            {
+            //                SeatCode = $"Seat-{dataIndex + 1}", // Giá trị SeatCode của bạn
+            //                TrainCarId = i, // Lặp lại các giá trị TrainCarId từ 1 đến trainCarIdCount
+            //                TypeId = typeIds[dataIndex % typeIds.Length], // Lặp lại các giá trị typeIds
+            //                StatusId = statusIds[dataIndex % statusIds.Length] // Lặp lại các giá trị statusIds
+            //            };
+
+            //            context.Seats.Add(seat);
+
+            //            dataIndex++;
+            //        }
+            //    }
+
+            //    context.SaveChanges();
+            //}
+
+            if (context.Schedules.Count() <= 0)
             {
-                var trainCar1 = new TrainCar()
+                string[] scheduleNames = { "Hà Nội", "Đà Nẵng", "Hồ Chí Minh", "Huế", "Nha Trang", "Đà Lạt" };
+
+                for (int i = 0; i < 8; i++)
                 {
-                    TrainCarNumber = 001,
-                    TrainId = 1,
-                    TypeId = 1,
-                    StatusId = 1
+                    var schedule = new Schedule()
+                    {
+                        ScheduleName = $"{scheduleNames[i % scheduleNames.Length]} - {scheduleNames[(i + 1) % scheduleNames.Length]}"
+                    };
+
+                    context.Schedules.Add(schedule);
+                }
+
+                context.SaveChanges();
+            }
+
+            //if (context.ScheduleDetails.Count() <= 0)
+            //{
+            //    var scheduleDetail = new ScheduleDetail()
+            //    {
+            //        ScheduleId = 1,
+            //        CurrentStation = 1,
+            //        NextStation = 1,
+            //        PriceToTheNextStation = 1
+            //    };
+            //    context.ScheduleDetails.Add(scheduleDetail);
+            //    context.SaveChanges();
+            //}
+
+            if (context.TrainTrips.Count() <= 0)
+            {
+                var trainTrip1 = new TrainTrip()
+                {
+                    TrainTripCode = "TT002",
+                    TrainId = 2,
+                    ScheduleId = 3,
+                    DepartureTime = new DateTime(2023, 8, 2, 15, 30, 0),
+                    ArrivalTime = new DateTime(2023, 8, 2, 17, 0, 0)
                 };
+
+                var trainTrip2 = new TrainTrip()
+                {
+                    TrainTripCode = "TT003",
+                    TrainId = 1,
+                    ScheduleId = 2,
+                    DepartureTime = new DateTime(2023, 8, 3, 8, 0, 0),
+                    ArrivalTime = new DateTime(2023, 8, 3, 11, 0, 0)
+                };
+
+                var trainTrip3 = new TrainTrip()
+                {
+                    TrainTripCode = "TT004",
+                    TrainId = 4,
+                    ScheduleId = 1,
+                    DepartureTime = new DateTime(2023, 8, 4, 12, 30, 0),
+                    ArrivalTime = new DateTime(2023, 8, 4, 15, 0, 0)
+                };
+
+                var trainTrip4 = new TrainTrip()
+                {
+                    TrainTripCode = "TT005",
+                    TrainId = 5,
+                    ScheduleId = 7,
+                    DepartureTime = new DateTime(2023, 8, 5, 10, 0, 0),
+                    ArrivalTime = new DateTime(2023, 8, 5, 13, 30, 0)
+                };
+
+                var trainTrip5 = new TrainTrip()
+                {
+                    TrainTripCode = "TT006",
+                    TrainId = 3,
+                    ScheduleId = 6,
+                    DepartureTime = new DateTime(2023, 8, 6, 14, 0, 0),
+                    ArrivalTime = new DateTime(2023, 8, 6, 17, 0, 0)
+                };
+
+                var trainTrip6 = new TrainTrip()
+                {
+                    TrainTripCode = "TT007",
+                    TrainId = 2,
+                    ScheduleId = 4,
+                    DepartureTime = new DateTime(2023, 8, 7, 9, 0, 0),
+                    ArrivalTime = new DateTime(2023, 8, 7, 11, 0, 0)
+                };
+
+                var trainTrip7 = new TrainTrip()
+                {
+                    TrainTripCode = "TT008",
+                    TrainId = 1,
+                    ScheduleId = 8,
+                    DepartureTime = new DateTime(2023, 8, 8, 16, 0, 0),
+                    ArrivalTime = new DateTime(2023, 8, 8, 17, 30, 0)
+                };
+
+                var trainTrip8 = new TrainTrip()
+                {
+                    TrainTripCode = "TT009",
+                    TrainId = 4,
+                    ScheduleId = 2,
+                    DepartureTime = new DateTime(2023, 8, 9, 11, 30, 0),
+                    ArrivalTime = new DateTime(2023, 8, 9, 13, 30, 0)
+                };
+
+                context.TrainTrips.Add(trainTrip1);
+                context.TrainTrips.Add(trainTrip2);
+                context.TrainTrips.Add(trainTrip3);
+                context.TrainTrips.Add(trainTrip4);
+                context.TrainTrips.Add(trainTrip5);
+                context.TrainTrips.Add(trainTrip6);
+                context.TrainTrips.Add(trainTrip7);
+                context.TrainTrips.Add(trainTrip8);
+                context.SaveChanges();
             }
         }
     }

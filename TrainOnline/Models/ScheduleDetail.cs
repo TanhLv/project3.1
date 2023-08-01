@@ -18,12 +18,12 @@ namespace TrainOnline.Models
         public decimal? PriceToTheNextStation { get; set; } = 0;
 
         [ForeignKey("ScheduleId")]
-        public virtual Schedule GetScheduleId { get; set; }
+        public virtual Schedule? GetScheduleId { get; set; }
 
         [ForeignKey("CurrentStation")]
-        public virtual Station GetCurrentStation { get; set; }
+        public virtual Station? GetCurrentStation { get; set; }
 
         [ForeignKey("NextStation")]
-        public virtual Station GetNextStation { get; set; }
+        public virtual Station? GetNextStation { get; set; }
     }
 }

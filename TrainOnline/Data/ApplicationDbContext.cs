@@ -9,6 +9,7 @@ namespace TrainOnline.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            DataSeed.Seeding(this);
         }
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Passenger> Passengers { get; set; }

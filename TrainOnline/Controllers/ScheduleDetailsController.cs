@@ -20,10 +20,37 @@ namespace TrainOnline.Controllers
         }
 
         // GET: ScheduleDetails
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter = "", bool? sortScheduleName = null, int index = 1, int size = 10)
         {
-            var applicationDbContext = _context.ScheduleDetails.Include(s => s.GetCurrentStation).Include(s => s.GetNextStation).Include(s => s.GetScheduleId);
-            return View(await applicationDbContext.ToListAsync());
+            var result = _context.ScheduleDetails.Include(r => r.GetCurrentStation).AsQueryable();
+            if (filter != null)
+            {
+                var currentStation = 0;
+                result = result.Where(r => (currentStation > 0 && r.CurrentStation <= currentStation)
+                );
+            }
+
+            if (sortScheduleName != null)
+            {
+                if (sortScheduleName == true)
+                {
+                    result = result.OrderBy(r => r.ScheduleId);
+                }
+                else
+                {
+                    result = result.OrderByDescending(r => r.ScheduleId);
+                }
+            }
+
+            var total = result.Count();
+            result = result.Skip((index - 1) * size).Take(size);
+
+            ViewBag.Filter = filter;
+            ViewBag.SortScheduleName = sortScheduleName;
+            ViewBag.Total = total;
+            ViewBag.Index = index;
+            ViewBag.Size = size;
+            return View(result);
         }
 
         // GET: ScheduleDetails/Details/5

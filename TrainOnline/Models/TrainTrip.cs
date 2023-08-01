@@ -19,10 +19,10 @@ namespace TrainOnline.Models
         public DateTime ArrivalTime { get; set; } = DateTime.Now;
 
         [ForeignKey("TrainId")]
-        public virtual Train GetTrainId { get; set; } = null;
+        public virtual Train? GetTrainId { get; set; } = null;
 
         [ForeignKey("ScheduleId")]
-        public virtual Schedule GetScheduleId { get; set; } = null;
+        public virtual Schedule? GetScheduleId { get; set; } = null;
 
     }
 }

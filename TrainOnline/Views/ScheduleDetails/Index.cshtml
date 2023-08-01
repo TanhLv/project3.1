@@ -3,12 +3,35 @@
 @{
     ViewData["Title"] = "Index";
 }
+@{
+    var _filter = (string)ViewBag.Filter;
+
+    var _sortScheduleName = (bool?)ViewBag.sortScheduleName;
+
+    var _totalItem = (int)ViewBag.Total;
+    var _index = (int)ViewBag.Index;
+    var _size = (int)ViewBag.Size;
+
+    var _totalPage = _totalItem / _size;
+    if (_totalItem % _size > 0)
+    {
+        _totalPage++;
+    }
+}
 
 <h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form class="row" asp-action="Index">
+    <div class="col-md-6">
+        <input type="text" class="form-control" name="filter" id="filter" value="@_filter" />
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -16,7 +39,17 @@
                 @Html.DisplayNameFor(model => model.PriceToTheNextStation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GetScheduleId)
+                <div style="display:flex">
+                    <div>
+                        ScheduleName
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="@Url.Action("Index","ScheduleDetails", new { filter = _filter, sortScheduleName = true })"><i class="fa-solid fa-caret-up"></i></a></li>
+                            <li><a href="@Url.Action("Index","ScheduleDetails", new { filter = _filter, sortScheduleName = false })"><i class="fa-solid fa-caret-down"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.GetCurrentStation)
@@ -49,7 +82,7 @@
                 @Html.DisplayFor(modelItem => item.PriceToTheNextStation)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GetScheduleId.ScheduleId)
+                @Html.DisplayFor(modelItem => item.GetScheduleId.ScheduleName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GetCurrentStation.StationId)
@@ -81,3 +114,15 @@
 }
     </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="@Url.Action("Index","ScheduleDetails", new { filter = _filter, sortScheduleName = _sortScheduleName, index = _index - 1 <=0 ? 1 : _index-1, size = _size })">Previous</a></li>
+        @for (var i = 0; i < _totalPage; i++)
+        {
+            <li class="page-item"><a class="page-link" href="@Url.Action("Index","ScheduleDetails", new { filter = _filter, sortScheduleName = _sortScheduleName, index = i+1, size = _size })">@(i + 1)</a></li>
+        }
+
+        <li class="page-item"><a class="page-link" href="@Url.Action("Index","ScheduleDetails", new { filter = _filter, sortScheduleName = _sortScheduleName, index = _index + 1 > _totalPage ? _totalPage : _index+1, size = _size })">Next</a></li>
+    </ul>
+</nav>
