@@ -1,0 +1,134 @@
+﻿@model IEnumerable<TrainOnline.Models._Type>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    var _filter = (string)ViewBag.Filter;
+
+    var _sortTypeName = (bool?)ViewBag.sortTypeName;
+
+    var _totalItem = (int)ViewBag.Total;
+    var _index = (int)ViewBag.Index;
+    var _size = (int)ViewBag.Size;
+
+    var _totalPage = _totalItem / _size;
+    if (_totalItem % _size > 0)
+    {
+        _totalPage++;
+    }
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form class="row" asp-action="Index">
+    <div class="col-md-6">
+        <input type="text" class="form-control" name="filter" id="filter" value="@_filter" />
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <div style="display:flex">
+                    <div>
+                        TypeName
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="@Url.Action("Index","_Type", new { filter = _filter, sortTypeName = true })"><i class="fa-solid fa-caret-up"></i></a></li>
+                            <li><a href="@Url.Action("Index","_Type", new { filter = _filter, sortTypeName = false })"><i class="fa-solid fa-caret-down"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CSSClass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sorting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StateId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeleteDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CSSClass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sorting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeleteDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TypeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TypeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TypeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="@Url.Action("Index","_Type", new { filter = _filter, sortTypeName = _sortTypeName, index = _index - 1 <=0 ? 1 : _index-1, size = _size })">Previous</a></li>
+        @for (var i = 0; i < _totalPage; i++)
+        {
+            <li class="page-item"><a class="page-link" href="@Url.Action("Index","_Type", new { filter = _filter, sortTypeName = _sortTypeName, index = i+1, size = _size })">@(i + 1)</a></li>
+        }
+
+        <li class="page-item"><a class="page-link" href="@Url.Action("Index","_Type", new { filter = _filter, sortTypeName = _sortTypeName, index = _index + 1 > _totalPage ? _totalPage : _index+1, size = _size })">Next</a></li>
+    </ul>
+</nav>
