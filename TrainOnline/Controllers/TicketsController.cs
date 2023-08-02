@@ -20,11 +20,43 @@ namespace TrainOnline.Controllers
         }
 
         // GET: Tickets
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter = "", bool? sortTicketCode = null, int index = 1, int size = 10)
         {
-            var applicationDbContext = _context.Tickets.Include(t => t.GetArrivalStation).Include(t => t.GetDepartureStation).Include(t => t.GetPassengerInformation).Include(t => t.GetSeatId);
-            return View(await applicationDbContext.ToListAsync());
+
+            var result = _context.Tickets.AsQueryable();
+            if (filter != null)
+            {
+                result = result.Where(r => r.TicketCode.ToLower().Contains(filter.ToLower())
+                );
+            }
+
+            if (sortTicketCode != null)
+            {
+                if (sortTicketCode == true)
+                {
+                    result = result.OrderBy(r => r.TicketCode);
+                }
+                else
+                {
+                    result = result.OrderByDescending(r => r.TicketCode);
+                }
+            }
+
+            var total = result.Count();
+            result = result.Skip((index - 1) * size).Take(size);
+
+            ViewBag.Filter = filter;
+            ViewBag.SortTicketCode = sortTicketCode;
+            ViewBag.Total = total;
+            ViewBag.Index = index;
+            ViewBag.Size = size;
+            return View(result);
         }
+        //public async Task<IActionResult> Index()
+        //{
+        //    var applicationDbContext = _context.Tickets.Include(t => t.GetArrivalStation).Include(t => t.GetDepartureStation).Include(t => t.GetPassengerInformation).Include(t => t.GetSeatId);
+        //    return View(await applicationDbContext.ToListAsync());
+        //}
 
         // GET: Tickets/Details/5
         public async Task<IActionResult> Details(int? id)

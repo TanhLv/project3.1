@@ -3,9 +3,35 @@
 @{
     ViewData["Title"] = "Index";
 }
+@{
+    var _filter = (string)ViewBag.Filter;
+
+    var _sortTrainTripCode = (bool?)ViewBag.sortTrainTripCode;
+
+    var _totalItem = (int)ViewBag.Total;
+    var _index = (int)ViewBag.Index;
+    var _size = (int)ViewBag.Size;
+
+    var _totalPage = _totalItem / _size;
+    if (_totalItem % _size > 0)
+    {
+        _totalPage++;
+    }
+}
 
 <h1>Index</h1>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form class="row" asp-action="Index">
+    <div class="col-md-6">
+        <input type="text" class="form-control" name="filter" id="filter" value="@_filter" />
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+</form>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -13,7 +39,17 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TrainTripCode)
+                <div style="display:flex">
+                    <div>
+                        TrainTripCode
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="@Url.Action("Index","TrainTrips", new { filter = _filter, sortTrainTripCode = true })"><i class="fa-solid fa-caret-up"></i></a></li>
+                            <li><a href="@Url.Action("Index","TrainTrips", new { filter = _filter, sortTrainTripCode = false })"><i class="fa-solid fa-caret-down"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DepartureTime)
@@ -87,3 +123,15 @@
 }
     </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="@Url.Action("Index","TrainTrips", new { filter = _filter, sortTrainTripCode = _sortTrainTripCode, index = _index - 1 <=0 ? 1 : _index-1, size = _size })">Previous</a></li>
+        @for (var i = 0; i < _totalPage; i++)
+        {
+            <li class="page-item"><a class="page-link" href="@Url.Action("Index","TrainTrips", new { filter = _filter, sortTrainTripCode = _sortTrainTripCode, index = i+1, size = _size })">@(i + 1)</a></li>
+        }
+
+        <li class="page-item"><a class="page-link" href="@Url.Action("Index","TrainTrips", new { filter = _filter, sortTrainTripCode = _sortTrainTripCode, index = _index + 1 > _totalPage ? _totalPage : _index+1, size = _size })">Next</a></li>
+    </ul>
+</nav>

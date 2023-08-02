@@ -226,7 +226,7 @@ namespace TrainOnline.Data
                 context.SaveChanges();
             }
 
-            if (context.Trains.Count () <= 0)
+            if (context.Trains.ToList().Count() == 0)
             {
                 var train1 = new Train()
                 {
@@ -304,7 +304,7 @@ namespace TrainOnline.Data
             //    int trainCarIdCount = 25;
 
             //    // Số lượng dữ liệu cần thêm
-            //    int dataCount = 800;
+            //    int dataCount = 30;
 
             //    int dataIndex = 0; // Biến đếm cho dữ liệu
 

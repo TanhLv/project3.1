@@ -20,11 +20,36 @@ namespace TrainOnline.Controllers
         }
 
         // GET: Stations
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter = "", bool? sortStationName = null, int index = 1, int size = 10)
         {
-              return _context.Stations != null ? 
-                          View(await _context.Stations.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Stations'  is null.");
+            var result = _context.Stations.AsQueryable();
+            if (filter != null)
+            {
+                result = result.Where(r => r.StationName.ToLower().Contains(filter.ToLower())
+                );
+            }
+
+            if (sortStationName != null)
+            {
+                if (sortStationName == true)
+                {
+                    result = result.OrderBy(r => r.StationName);
+                }
+                else
+                {
+                    result = result.OrderByDescending(r => r.StationName);
+                }
+            }
+
+            var total = result.Count();
+            result = result.Skip((index - 1) * size).Take(size);
+
+            ViewBag.Filter = filter;
+            ViewBag.SortStationName = sortStationName;
+            ViewBag.Total = total;
+            ViewBag.Index = index;
+            ViewBag.Size = size;
+            return View(result);
         }
 
         // GET: Stations/Details/5

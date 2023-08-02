@@ -20,10 +20,38 @@ namespace TrainOnline.Controllers
         }
 
         // GET: Trains
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter = "", bool? sortTrainNumber = null, int index = 1, int size = 10)
         {
-            var applicationDbContext = _context.Trains.Include(t => t.GetStatusId).Include(t => t.GetTypeId);
-            return View(await applicationDbContext.ToListAsync());
+
+            var result = _context.Trains.AsQueryable();
+            if (!string.IsNullOrEmpty(filter))
+            {
+                var trainNumberFilter = 0;
+                int.TryParse(filter, out trainNumberFilter);
+                result = result.Where(r => r.TrainNumber.ToString().Equals(trainNumberFilter.ToString()));
+            }
+
+            if (sortTrainNumber != null)
+            {
+                if (sortTrainNumber == true)
+                {
+                    result = result.OrderBy(r => r.TrainNumber);
+                }
+                else
+                {
+                    result = result.OrderByDescending(r => r.TrainNumber);
+                }
+            }
+
+            var total = result.Count();
+            result = result.Skip((index - 1) * size).Take(size);
+
+            ViewBag.Filter = filter;
+            ViewBag.SortTrainNumber = sortTrainNumber;
+            ViewBag.Total = total;
+            ViewBag.Index = index;
+            ViewBag.Size = size;
+            return View(result);
         }
 
         // GET: Trains/Details/5
