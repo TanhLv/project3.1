@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "DatVe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #f2f2f2;
+	}
+
+	h2 {
+		text-align: center;
+		color: #333;
+	}
+
+	form {
+		max-width: 500px;
+		margin: 0 auto;
+		padding: 20px;
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	}
+
+	label {
+		display: block;
+		margin-bottom: 10px;
+		font-size: 16px;
+		font-weight: bold;
+		color: #333;
+	}
+
+	input[type="text"],
+	input[type="number"],
+	input[type="time"] {
+		width: 100%;
+		padding: 10px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+		box-sizing: border-box;
+		font-size: 16px;
+		margin-bottom: 20px;
+	}
+
+	input[type="submit"] {
+		background-color: #36b03c;
+		color: #fff;
+		border: none;
+		padding: 10px 20px;
+		border-radius: 5px;
+		font-size: 16px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+		input[type="submit"]:hover {
+			background-color: #2a8d2a;
+		}
+</style>
+<body>
+	<h2>Thông tin thanh toán</h2>
+	<form method="GET">
+		<label for="name">Tên khách hàng:</label>
+		<input type="text" id="name" name="name"><br><br>
+
+		<label for="age">Tuổi:</label>
+		<input type="text" id="age" name="age"><br><br>
+
+		<input type="submit" value="Thanh toán">
+	</form>
+</body>
+</html>
+
